@@ -1,0 +1,22 @@
+﻿@page
+@using Acme.ManageNews.Localization
+@using Acme.ManageNews.Web.Pages.Categories
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model EditModalModel
+@inject IStringLocalizer<ManageNewsResource> L
+@{
+    Layout = null;
+}
+<form asp-page="/Categories/EditModal">
+    <abp-modal>
+        <abp-modal-header title="@L["Update"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="Category.Id" />
+            <abp-input asp-for="Category.Name" />
+            <abp-input asp-for="Category.Status" />
+            <abp-input asp-for="Category.SortOrder" />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</form>
