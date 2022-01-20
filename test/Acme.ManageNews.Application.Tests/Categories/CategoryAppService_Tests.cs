@@ -1,4 +1,5 @@
-﻿using Acme.ManageNews.Catalog.Categories;
+﻿using Acme.ManageNews.Catalog;
+using Acme.ManageNews.Catalog.Categories;
 using Shouldly;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Acme.ManageNews.Categories
         [Fact]
         public async Task Should_Get_All_Categorys_Without_Any_Filter()
         {
-            var result = await _categoryAppService.GetListAsync(new GetCategoryListDto());
+            var result = await _categoryAppService.GetListAsync(new GetCatalogListDto());
 
             result.TotalCount.ShouldBeGreaterThanOrEqualTo(2);
             result.Items.ShouldContain(Category => Category.Name == "Xã Hội");
@@ -32,7 +33,7 @@ namespace Acme.ManageNews.Categories
         public async Task Should_Get_Filtered_Categorys()
         {
             var result = await _categoryAppService.GetListAsync(
-                new GetCategoryListDto { Filter = "Xã" });
+                new GetCatalogListDto { Filter = "Xã" });
 
             result.TotalCount.ShouldBeGreaterThanOrEqualTo(1);
             result.Items.ShouldContain(Category => Category.Name == "Xã Hội");
@@ -58,7 +59,7 @@ namespace Acme.ManageNews.Categories
         [Fact]
         public async Task Should_Not_Allow_To_Create_Duplicate_Category()
         {
-            await Assert.ThrowsAsync<CategoryAlreadyExistsException>(async () =>
+            await Assert.ThrowsAsync<CatalogAlreadyExistsException>(async () =>
             {
                 await _categoryAppService.CreateAsync(
                     new CreateCategoryDto

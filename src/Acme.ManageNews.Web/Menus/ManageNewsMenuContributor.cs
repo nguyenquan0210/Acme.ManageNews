@@ -58,6 +58,22 @@ public class ManageNewsMenuContributor : IMenuContributor
                 url: "/Cities"
             ));
         }
+        if (await context.IsGrantedAsync(ManageNewsPermissions.Topics.Default))
+        {
+            bookStoreMenu.AddItem(new ApplicationMenuItem(
+                "ManageNews.Topic",
+                l["Menu:Topics"],
+                url: "/Topics"
+            ));
+        }
+        if (await context.IsGrantedAsync(ManageNewsPermissions.Events.Default))
+        {
+            bookStoreMenu.AddItem(new ApplicationMenuItem(
+                "ManageNews.Events",
+                l["Menu:Eventss"],
+                url: "/Eventss"
+            ));
+        }
 
         if (MultiTenancyConsts.IsEnabled)
         {

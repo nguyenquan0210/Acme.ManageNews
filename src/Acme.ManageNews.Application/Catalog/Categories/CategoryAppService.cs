@@ -28,7 +28,7 @@ namespace Acme.ManageNews.Catalog.Categories
         {
             var category = await _categoryManager.CreateAsync(
                 input.Name,
-                input.Status,
+                input.Status = Enums.Status.Active,
                 input.SortOrder
             );
 
@@ -49,7 +49,7 @@ namespace Acme.ManageNews.Catalog.Categories
             return ObjectMapper.Map<Category, CategoryDto>(category);
         }
 
-        public async Task<PagedResultDto<CategoryDto>> GetListAsync(GetCategoryListDto input)
+        public async Task<PagedResultDto<CategoryDto>> GetListAsync(GetCatalogListDto input)
         {
             if (input.Sorting.IsNullOrWhiteSpace())
             {

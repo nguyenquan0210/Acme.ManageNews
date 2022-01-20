@@ -1,4 +1,5 @@
-﻿using Acme.ManageNews.Entities;
+﻿
+using Acme.ManageNews.Entities;
 using Acme.ManageNews.Enums;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Acme.ManageNews.Catalog.Categories
             var existingCategory = await _categoryRepository.FindByNameAsync(name);
             if (existingCategory != null)
             {
-                throw new CategoryAlreadyExistsException(name);
+                throw new CatalogAlreadyExistsException(name);
             }
 
             return new Category(
@@ -51,7 +52,7 @@ namespace Acme.ManageNews.Catalog.Categories
             var existingCategory = await _categoryRepository.FindByNameAsync(newName);
             if (existingCategory != null && existingCategory.Id != Category.Id)
             {
-                throw new CategoryAlreadyExistsException(newName);
+                throw new CatalogAlreadyExistsException(newName);
             }
 
             Category.ChangeName(newName);

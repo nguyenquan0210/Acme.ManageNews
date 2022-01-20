@@ -1,20 +1,19 @@
 ﻿@page
 @using Acme.ManageNews.Localization
-@using Acme.ManageNews.Web.Pages.Categories
+@using Acme.ManageNews.Web.Pages.Topics
 @using Microsoft.Extensions.Localization
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
-@model CreateModalModel
+@model EditModalModel
 @inject IStringLocalizer<ManageNewsResource> L
 @{
     Layout = null;
 }
-<form asp-page="/Categories/CreateModal">
+<abp-dynamic-form abp-model="Topic" asp-page="/Topics/EditModal">
     <abp-modal>
-        <abp-modal-header title="@L["NewCategory"].Value"></abp-modal-header>
+        <abp-modal-header title="@L["Update"].Value"></abp-modal-header>
         <abp-modal-body>
-            <abp-input asp-for="Category.Name" />
-            <abp-input asp-for="Category.SortOrder" />
+            <abp-form-content />
         </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>
-</form>
+</abp-dynamic-form>
