@@ -37,10 +37,6 @@ namespace Acme.ManageNews.Web.Pages.Cities
             [Required]
             [StringLength(CatalogConsts.MaxNameLength)]
             public string Name { get; set; }
-
-            [Required]
-            public Status Status { get; set; } = Status.Active;
-
             [Required]
             public int SortOrder { get; set; } = 1;
         }

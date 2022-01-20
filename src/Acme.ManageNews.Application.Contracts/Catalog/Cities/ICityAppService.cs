@@ -11,7 +11,7 @@ namespace Acme.ManageNews.Catalog.Cities
     {
         Task<CityDto> GetAsync(Guid id);
 
-        Task<PagedResultDto<CityDto>> GetListAsync(GetCityListDto input);
+        Task<PagedResultDto<CityDto>> GetListAsync(GetCatalogListDto input);
 
         Task<CityDto> CreateAsync(CreateCityDto input);
 

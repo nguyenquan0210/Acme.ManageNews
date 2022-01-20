@@ -9,52 +9,56 @@ using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Domain.Services;
 
-namespace Acme.ManageNews.Catalog.Cities
+namespace Acme.ManageNews.Catalog.Eventss
 {
-    public class CityManager : DomainService
+    public class EventsManager : DomainService
     {
-        private readonly ICityRepository _cityRepository;
+        private readonly IEventsRepository _eventsRepository;
 
-        public CityManager(ICityRepository  cityRepository)
+        public EventsManager(IEventsRepository EventsRepository)
         {
-            _cityRepository = cityRepository;
+            _eventsRepository = EventsRepository;
         }
 
-        public async Task<City> CreateAsync(
+        public async Task<Events> CreateAsync(
              [NotNull] string name,
             Status Status,
-            int SortOrder)
+            int SortOrder,
+            bool Hot,
+            Guid CategoryId)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
 
-            var existingCity = await _cityRepository.FindByNameAsync(name);
-            if (existingCity != null)
+            var existingEvents = await _eventsRepository.FindByNameAsync(name);
+            if (existingEvents != null)
             {
                 throw new CatalogAlreadyExistsException(name);
             }
 
-            return new City(
+            return new Events(
                 GuidGenerator.Create(),
+                CategoryId,
                 name,
                 Status,
-                SortOrder
+                SortOrder,
+                Hot
             );
         }
 
         public async Task ChangeNameAsync(
-            [NotNull] City City,
+            [NotNull] Events Events,
             [NotNull] string newName)
         {
-            Check.NotNull(City, nameof(City));
+            Check.NotNull(Events, nameof(Events));
             Check.NotNullOrWhiteSpace(newName, nameof(newName));
 
-            var existingCity = await _cityRepository.FindByNameAsync(newName);
-            if (existingCity != null && existingCity.Id != City.Id)
+            var existingEvents = await _eventsRepository.FindByNameAsync(newName);
+            if (existingEvents != null && existingEvents.Id != Events.Id)
             {
                 throw new CatalogAlreadyExistsException(newName);
             }
 
-            City.ChangeName(newName);
+            Events.ChangeName(newName);
         }
     }
 }

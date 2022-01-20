@@ -30,7 +30,7 @@ namespace Acme.ManageNews.Catalog.Cities
         {
             var city = await _cityManager.CreateAsync(
                 input.Name,
-                input.Status,
+                input.Status = Enums.Status.Active,
                 input.SortOrder
             );
 
@@ -51,7 +51,7 @@ namespace Acme.ManageNews.Catalog.Cities
             return ObjectMapper.Map<City, CityDto>(city);
         }
 
-        public async Task<PagedResultDto<CityDto>> GetListAsync(GetCityListDto input)
+        public async Task<PagedResultDto<CityDto>> GetListAsync(GetCatalogListDto input)
         {
             if (input.Sorting.IsNullOrWhiteSpace())
             {

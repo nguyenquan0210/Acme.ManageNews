@@ -2,12 +2,12 @@
 using System.Runtime.Serialization;
 using Volo.Abp;
 
-namespace Acme.ManageNews.Catalog.Cities
+namespace Acme.ManageNews.Catalog
 {
     [Serializable]
-    public class CityAlreadyExistsException : BusinessException
+    public class CatalogAlreadyExistsException : BusinessException
     {
-        public CityAlreadyExistsException(string name)
+        public CatalogAlreadyExistsException(string name)
             : base(ManageNewsDomainErrorCodes.AlreadyExists)
         {
             WithData("name", name);

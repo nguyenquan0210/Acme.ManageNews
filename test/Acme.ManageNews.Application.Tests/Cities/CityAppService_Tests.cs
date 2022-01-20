@@ -1,4 +1,5 @@
-﻿using Acme.ManageNews.Catalog.Cities;
+﻿using Acme.ManageNews.Catalog;
+using Acme.ManageNews.Catalog.Cities;
 using Shouldly;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Acme.ManageNews.Cities
         [Fact]
         public async Task Should_Get_All_citys_Without_Any_Filter()
         {
-            var result = await _cityAppService.GetListAsync(new GetCityListDto());
+            var result = await _cityAppService.GetListAsync(new GetCatalogListDto());
 
             result.TotalCount.ShouldBeGreaterThanOrEqualTo(2);
             result.Items.ShouldContain(city => city.Name == "Hà Nội");
@@ -32,7 +33,7 @@ namespace Acme.ManageNews.Cities
         public async Task Should_Get_Filtered_citys()
         {
             var result = await _cityAppService.GetListAsync(
-                new GetCityListDto { Filter = "Hà" });
+                new GetCatalogListDto { Filter = "Hà" });
 
             result.TotalCount.ShouldBeGreaterThanOrEqualTo(1);
             result.Items.ShouldContain(city => city.Name == "Hà Nội");
@@ -58,7 +59,7 @@ namespace Acme.ManageNews.Cities
         [Fact]
         public async Task Should_Not_Allow_To_Create_Duplicate_city()
         {
-            await Assert.ThrowsAsync<CityAlreadyExistsException>(async () =>
+            await Assert.ThrowsAsync<CatalogAlreadyExistsException>(async () =>
             {
                 await _cityAppService.CreateAsync(
                     new CreateCityDto

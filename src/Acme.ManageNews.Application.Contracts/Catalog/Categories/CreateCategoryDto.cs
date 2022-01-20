@@ -12,7 +12,7 @@ namespace Acme.ManageNews.Catalog.Categories
         [Required]
         [StringLength(CatalogConsts.MaxNameLength)]
         public string Name { get; set; }
-        [Required]
+        
         public Status Status { get; set; }
         [Required]
         public int SortOrder { get; set; }

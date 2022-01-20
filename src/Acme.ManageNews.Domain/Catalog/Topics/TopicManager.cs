@@ -9,52 +9,54 @@ using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Domain.Services;
 
-namespace Acme.ManageNews.Catalog.Cities
+namespace Acme.ManageNews.Catalog.Topics
 {
-    public class CityManager : DomainService
+    public class TopicManager : DomainService
     {
-        private readonly ICityRepository _cityRepository;
+        private readonly ITopicRepository _topicRepository;
 
-        public CityManager(ICityRepository  cityRepository)
+        public TopicManager(ITopicRepository TopicRepository)
         {
-            _cityRepository = cityRepository;
+            _topicRepository = TopicRepository;
         }
 
-        public async Task<City> CreateAsync(
+        public async Task<Topic> CreateAsync(
              [NotNull] string name,
             Status Status,
-            int SortOrder)
+            int SortOrder,
+            bool Hot)
         {
             Check.NotNullOrWhiteSpace(name, nameof(name));
 
-            var existingCity = await _cityRepository.FindByNameAsync(name);
-            if (existingCity != null)
+            var existingTopic = await _topicRepository.FindByNameAsync(name);
+            if (existingTopic != null)
             {
                 throw new CatalogAlreadyExistsException(name);
             }
 
-            return new City(
+            return new Topic(
                 GuidGenerator.Create(),
                 name,
                 Status,
-                SortOrder
+                SortOrder,
+                Hot
             );
         }
 
         public async Task ChangeNameAsync(
-            [NotNull] City City,
+            [NotNull] Topic Topic,
             [NotNull] string newName)
         {
-            Check.NotNull(City, nameof(City));
+            Check.NotNull(Topic, nameof(Topic));
             Check.NotNullOrWhiteSpace(newName, nameof(newName));
 
-            var existingCity = await _cityRepository.FindByNameAsync(newName);
-            if (existingCity != null && existingCity.Id != City.Id)
+            var existingTopic = await _topicRepository.FindByNameAsync(newName);
+            if (existingTopic != null && existingTopic.Id != Topic.Id)
             {
                 throw new CatalogAlreadyExistsException(newName);
             }
 
-            City.ChangeName(newName);
+            Topic.ChangeName(newName);
         }
     }
 }

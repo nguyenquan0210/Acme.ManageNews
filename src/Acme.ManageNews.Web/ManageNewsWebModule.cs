@@ -89,9 +89,18 @@ public class ManageNewsWebModule : AbpModule
         ConfigureSwaggerServices(context.Services);
         Configure<RazorPagesOptions>(options =>
         {
-            options.Conventions.AuthorizePage("/Books/Index", ManageNewsPermissions.Categories.Default);
-            options.Conventions.AuthorizePage("/Books/CreateModal", ManageNewsPermissions.Categories.Create);
-            options.Conventions.AuthorizePage("/Books/EditModal", ManageNewsPermissions.Categories.Edit);
+            options.Conventions.AuthorizePage("/Categories/Index", ManageNewsPermissions.Categories.Default);
+            options.Conventions.AuthorizePage("/Categories/CreateModal", ManageNewsPermissions.Categories.Create);
+            options.Conventions.AuthorizePage("/Categories/EditModal", ManageNewsPermissions.Categories.Edit);
+            options.Conventions.AuthorizePage("/Cities/Index", ManageNewsPermissions.Cities.Default);
+            options.Conventions.AuthorizePage("/Cities/CreateModal", ManageNewsPermissions.Cities.Create);
+            options.Conventions.AuthorizePage("/Cities/EditModal", ManageNewsPermissions.Cities.Edit);
+            options.Conventions.AuthorizePage("/Topics/Index", ManageNewsPermissions.Topics.Default);
+            options.Conventions.AuthorizePage("/Topics/CreateModal", ManageNewsPermissions.Topics.Create);
+            options.Conventions.AuthorizePage("/Topics/EditModal", ManageNewsPermissions.Topics.Edit);
+            options.Conventions.AuthorizePage("/Events/Index", ManageNewsPermissions.Events.Default);
+            options.Conventions.AuthorizePage("/Events/CreateModal", ManageNewsPermissions.Events.Create);
+            options.Conventions.AuthorizePage("/Events/EditModal", ManageNewsPermissions.Events.Edit);
         });
     }
 

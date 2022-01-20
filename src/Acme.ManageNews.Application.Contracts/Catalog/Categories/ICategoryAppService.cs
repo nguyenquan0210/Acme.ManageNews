@@ -11,7 +11,7 @@ namespace Acme.ManageNews.Catalog.Categories
     {
         Task<CategoryDto> GetAsync(Guid id);
 
-        Task<PagedResultDto<CategoryDto>> GetListAsync(GetCategoryListDto input);
+        Task<PagedResultDto<CategoryDto>> GetListAsync(GetCatalogListDto input);
 
         Task<CategoryDto> CreateAsync(CreateCategoryDto input);
 
