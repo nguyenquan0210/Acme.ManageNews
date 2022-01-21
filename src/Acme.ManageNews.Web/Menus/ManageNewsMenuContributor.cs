@@ -74,6 +74,15 @@ public class ManageNewsMenuContributor : IMenuContributor
                 url: "/Eventss"
             ));
         }
+        if (await context.IsGrantedAsync(ManageNewsPermissions.News.Default))
+        {
+            bookStoreMenu.AddItem(new ApplicationMenuItem(
+                "ManageNews.News",
+                l["Menu:News"],
+                url: "/Newss"
+            ));
+        }
+       
 
         if (MultiTenancyConsts.IsEnabled)
         {

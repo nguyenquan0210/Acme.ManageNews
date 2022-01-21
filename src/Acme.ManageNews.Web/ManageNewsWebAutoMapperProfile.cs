@@ -1,6 +1,7 @@
 ﻿using Acme.ManageNews.Catalog.Categories;
 using Acme.ManageNews.Catalog.Cities;
 using Acme.ManageNews.Catalog.Eventss;
+using Acme.ManageNews.Catalog.Newss;
 using Acme.ManageNews.Catalog.Topics;
 using AutoMapper;
 
@@ -34,5 +35,10 @@ public class ManageNewsWebAutoMapperProfile : Profile
         CreateMap<Pages.Eventss.CreateModalModel.CreateEventsViewModel, CreateEventsDto>();
         CreateMap<EventsDto, Pages.Eventss.EditModalModel.EditEventsViewModel>();
         CreateMap<Pages.Eventss.EditModalModel.EditEventsViewModel, UpdateEventsDto>();
+
+        CreateMap<NewsDto, CreateUpdateNewsDto>();
+        CreateMap<Pages.Newss.CreateModalModel.CreateNewsViewModel, CreateNewsDto>();
+        CreateMap<NewsDto, Pages.Newss.EditModalModel.EditNewsViewModel>();
+        CreateMap<Pages.Newss.EditModalModel.EditNewsViewModel, UpdateNewsDto>();
     }
 }
