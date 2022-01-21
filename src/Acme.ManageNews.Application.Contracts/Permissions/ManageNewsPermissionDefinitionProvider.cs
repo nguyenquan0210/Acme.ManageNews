@@ -31,6 +31,11 @@ public class ManageNewsPermissionDefinitionProvider : PermissionDefinitionProvid
         eventsPermission.AddChild(ManageNewsPermissions.Events.Create, L("Permission:Events.Create"));
         eventsPermission.AddChild(ManageNewsPermissions.Events.Edit, L("Permission:Events.Edit"));
         eventsPermission.AddChild(ManageNewsPermissions.Events.Delete, L("Permission:Events.Delete"));
+
+        var newsPermission = myGroup.AddPermission(ManageNewsPermissions.News.Default, L("Permission:News"));
+        newsPermission.AddChild(ManageNewsPermissions.News.Create, L("Permission:News.Create"));
+        newsPermission.AddChild(ManageNewsPermissions.News.Edit, L("Permission:News.Edit"));
+        newsPermission.AddChild(ManageNewsPermissions.News.Delete, L("Permission:News.Delete"));
     }
 
     private static LocalizableString L(string name)
