@@ -36,7 +36,7 @@ public class ManageNewsMenuContributor : IMenuContributor
         );
         var bookStoreMenu = new ApplicationMenuItem(
             "ManageNews",
-            l["Menu:Categories"],
+            l["Menu:ManagerNews"],
             icon: "fa fa-book"
         );
         context.Menu.AddItem(bookStoreMenu);
