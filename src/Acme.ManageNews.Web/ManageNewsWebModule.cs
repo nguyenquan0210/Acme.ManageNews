@@ -121,6 +121,9 @@ public class ManageNewsWebModule : AbpModule
                 bundle =>
                 {
                     bundle.AddFiles("/global-styles.css");
+                    bundle.AddFiles("/styles/nucleo-icons.css");
+                    bundle.AddFiles("/styles/nucleo-svg.css");
+                    bundle.AddFiles("/styles/material-kit.min.css");
                 }
             );
         });
